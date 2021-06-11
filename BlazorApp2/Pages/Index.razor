@@ -10,22 +10,7 @@
 <MBButton ButtonStyle="@MBButtonStyle.Outlined"
           Label="Spouse"
           @onclick="@(() => Click(1))" />
-<MudCard>
-    <MudCardContent>
-        <MudForm>
-            <MudTextField @bind-Value="client.Name"
-                          Immediate="true"
-                          Label="Name" />
-            <MudTextField @bind-Value="client.Name"
-                          Immediate="true"
-                          Label="Surname" />
-            <MudDatePicker Label="Date of birth" @bind-Date="client.DOB" />
-            <MudTextField @bind-Value="client.Name"
-                          Immediate="true"
-                          Label="Gender" />
-        </MudForm>
-    </MudCardContent>
-</MudCard>
+
 
 @if (i == 0)
 {
