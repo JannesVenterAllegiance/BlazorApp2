@@ -1,0 +1,87 @@
+﻿@page "/"
+
+@using System.IO
+<!--<img src="data:image/jpg;base64, @(Convert.ToBase64String(client.Portrait))" />-->
+<img src="/images/pic.jpg" width="50px" />
+<MBButton ButtonStyle="@MBButtonStyle.Outlined"
+          Label="Client"
+          @onclick="@(() => Click(0))" />
+
+<MBButton ButtonStyle="@MBButtonStyle.Outlined"
+          Label="Spouse"
+          @onclick="@(() => Click(1))" />
+<MudCard>
+    <MudCardContent>
+        <MudForm>
+            <MudTextField @bind-Value="client.Name"
+                          Immediate="true"
+                          Label="Name" />
+            <MudTextField @bind-Value="client.Name"
+                          Immediate="true"
+                          Label="Surname" />
+            <MudDatePicker Label="Date of birth" @bind-Date="client.DOB" />
+            <MudTextField @bind-Value="client.Name"
+                          Immediate="true"
+                          Label="Gender" />
+        </MudForm>
+    </MudCardContent>
+</MudCard>
+
+@if (i == 0)
+{
+    <MudCard>
+        <MudCardContent>
+            <MudForm>
+                <MudTextField @bind-Value="client.Name"
+                              Immediate="true"
+                              Label="Name" />
+                <MudTextField @bind-Value="client.Name"
+                              Immediate="true"
+                              Label="Surname" />
+                <MudDatePicker Label="Date of birth" @bind-Date="client.DOB" />
+                <MudSelect T="Client.EGender" @bind-Value="client.Gender" Label="Gender">
+                    <MudSelectItem Value="@("Male")" />
+                    <MudSelectItem Value="@("Female")" />
+                    <MudSelectItem Value="@("Other")" />
+                </MudSelect>
+            </MudForm>
+        </MudCardContent>
+    </MudCard>
+}
+else
+{
+    <MudCard>
+        <MudCardContent>
+            <MudForm>
+                <MudTextField @bind-Value="client.SName"
+                              Immediate="true"
+                              Label="Name" />
+                <MudTextField @bind-Value="client.SSurname"
+                              Immediate="true"
+                              Label="Surname" />
+                <MudDatePicker Label="Date of birth" @bind-Date="client.SDOB" />
+                <MudSelect T="Client.EGender" @bind-Value="client.SGender" Label="Gender">
+                    <MudSelectItem Value="@("Male")" />
+                    <MudSelectItem Value="@("Female")" />
+                    <MudSelectItem Value="@("Other")" />
+                </MudSelect>
+            </MudForm>
+        </MudCardContent>
+    </MudCard>
+}
+
+@code {
+    public int i { get; set; }
+    Client client = new Client(Guid.NewGuid(), GetDefaultImage(), null, null, DateTime.Now, Client.EGender.Other, null, null, DateTime.Now, Client.EGender.Other);
+
+    private void Click(int index)
+    {
+        i = index;
+    }
+
+    public static byte[] GetDefaultImage()
+    {
+        string path = @"/Images/pic.jpg";
+        return File.ReadAllBytes(path);
+    }
+}
