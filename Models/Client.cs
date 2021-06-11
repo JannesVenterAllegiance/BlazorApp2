@@ -12,14 +12,14 @@ namespace BlazorApp2.Models
         public byte[] Portrait { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateTime DOB { get; set; }
+        public string DOB { get; set; }
         public EGender Gender { get; set; }
         public string SName { get; set; }
         public string SSurname { get; set; }
-        public DateTime SDOB { get; set; }
+        public string SDOB { get; set; }
         public EGender SGender { get; set; }
 
-        public Client(Guid clientID, byte[] portrait, string name, string surname, DateTime dob, EGender gender, string sName, string sSurname, DateTime sDOB, EGender sGender)
+        public Client(Guid clientID, byte[] portrait, string name, string surname, string dob, EGender gender, string sName, string sSurname, string sDOB, EGender sGender)
         {
             ClientID = clientID;
             Portrait = portrait;
